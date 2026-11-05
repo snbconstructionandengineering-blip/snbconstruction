@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 100" role="img" aria-labelledby="title desc">
+  <title id="title">SNB Construction and Engineering</title>
+  <desc id="desc">Blue architectural towers beside the SNB Construction and Engineering wordmark.</desc>
+  <g fill="none" stroke="#65b5e5" stroke-width="6" stroke-linejoin="miter">
+    <path d="M8 78V46L48 7v71"/>
+    <path d="M52 78V23L76 2v76"/>
+  </g>
+  <path fill="#176b9b" d="M49 22 70 42v36H49zM78 42l22 21v15H78z"/>
+  <text x="118" y="58" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="49" font-weight="800" letter-spacing="2">SNB</text>
+  <path d="M118 68h292" stroke="#c6923a" stroke-width="2"/>
+  <text x="119" y="86" fill="#e6edf2" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="700" letter-spacing="2.5">CONSTRUCTION &amp; ENGINEERING</text>
+</svg>
