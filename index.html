@@ -20,60 +20,55 @@
         if (!response.ok) throw new Error("Could not load the website page.");
         let html = await response.text();
 
-        // Update the service area and company wording in the source page.
         html = html.replace(/SNB Construction and Engineering \| Moulvibazar, Sylhet/g, "SNB Construction and Engineering | Serving All of Bangladesh");
         html = html.replace(/construction and engineering in Moulvibazar and Sylhet/gi, "construction and engineering services throughout Bangladesh");
-        html = html.replace(/delivers homes, commercial buildings and civil works across Moulvibazar and the Sylhet region\./gi, "provides high-quality construction, engineering, and civil works throughout Bangladesh.");
         html = html.replace(/SNB Construction and Engineering delivers homes, commercial buildings and civil works across Moulvibazar and the Sylhet region\./gi, "Building with strength. Delivering with confidence. SNB Construction &amp; Engineering provides high-quality construction, engineering, and civil works throughout Bangladesh.");
         html = html.replace(/SNB Construction and Engineering is a construction company based in Sherpur Bazar, Moulvibazar\./gi, "SNB Construction &amp; Engineering is a professional construction and engineering company delivering quality workmanship, dependable project execution, and trusted solutions across Bangladesh.");
         html = html.replace(/Sylhet region/g, "Bangladesh");
         html = html.replace(/local team, local knowledge/g, "serving projects nationwide");
 
-        // Use the provided SNB brand asset instead of the cartoon-style text icon.
         html = html.replace(
           /<a class="logo" href="#top"><i>S<\/i>SNB Construction<\/a>/,
           '<a class="logo" href="#top" aria-label="SNB Construction and Engineering home"><img src="./assets/snb-logo.svg" alt="SNB Construction and Engineering"></a>'
         );
 
         const styles = `<style>
-          :root {
-            --bg: #f3f5f7 !important; --surface: #fff !important; --ink: #172b3a !important;
-            --muted: #526273 !important; --steel: #205b78 !important; --accent: #c6923a !important;
-            --line: #d5dde5 !important; --dark: #102a43 !important; --on-dark: #f7f9fb !important;
-          }
-          header {
-            position: sticky !important; top: 0 !important; z-index: 20 !important;
-            background: #102a43 !important; color: #f7f9fb !important;
-            border-bottom: 3px solid #c6923a !important;
-            box-shadow: 0 3px 14px rgba(10,28,43,.16) !important;
-          }
-          header .wrap {
-            max-width: 1180px !important; min-height: 78px !important; padding: 10px 24px !important;
-            display: flex !important; align-items: center !important; justify-content: space-between !important; gap: 24px !important;
-          }
-          header .logo { display: inline-flex !important; align-items: center !important; flex: 0 0 auto !important; }
-          header .logo img { display: block !important; width: min(230px,42vw) !important; max-height: 54px !important; object-fit: contain !important; }
-          header .logo i { display: none !important; }
-          header nav { display: flex !important; align-items: center !important; justify-content: flex-end !important; gap: clamp(12px,2vw,26px) !important; overflow-x: auto !important; white-space: nowrap !important; }
-          header nav a { color: #f7f9fb !important; font: 600 13px/1.2 Arial,Helvetica,sans-serif !important; letter-spacing: .09em !important; text-transform: uppercase !important; opacity: .9 !important; }
-          header nav a:hover { color: #e4bd70 !important; opacity: 1 !important; }
-          #gallery .chips { display: flex !important; align-items: flex-end !important; gap: 6px !important; margin: 0 0 18px !important; border-bottom: 2px solid var(--line) !important; overflow-x: auto !important; }
-          #gallery .chip { display: inline-flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; padding: 10px 14px !important; margin: 0 !important; border: 1px solid var(--line) !important; border-bottom: 0 !important; border-radius: 8px 8px 0 0 !important; color: var(--steel) !important; background: #e8edf1 !important; white-space: nowrap !important; }
-          #gallery .chip::before { content: ""; width: 17px; height: 14px; display: inline-block; background: currentColor; clip-path: polygon(0 18%,38% 18%,50% 34%,100% 34%,100% 100%,0 100%); }
-          #gallery .chip.on { color: #fff !important; background: var(--steel) !important; border-color: var(--steel) !important; }
-          #gallery .gal { padding: 18px !important; background: #e8edf1 !important; border: 1px solid var(--line) !important; border-radius: 0 8px 8px 8px !important; }
-          #gallery .gi { padding: 7px !important; border: 1px solid var(--line) !important; border-radius: 5px !important; background: white !important; box-shadow: 0 2px 8px #102a4314 !important; }
-          #gallery .gi:hover { transform: translateY(-2px); box-shadow: 0 5px 14px #102a4322 !important; }
-          @media (max-width:760px) {
-            header .wrap { min-height: 66px !important; padding: 8px 16px !important; gap: 14px !important; }
-            header .logo img { width: min(175px,38vw) !important; max-height: 43px !important; }
-            header nav { gap: 14px !important; }
-            header nav a { font-size: 11px !important; letter-spacing: .04em !important; }
-            #gallery .chips { margin-right: -20px !important; padding-right: 20px !important; }
-            #gallery .gal { padding: 10px !important; }
+          :root { --bg:#f3f5f7 !important; --surface:#fff !important; --ink:#172b3a !important; --muted:#526273 !important; --steel:#205b78 !important; --accent:#c6923a !important; --line:#d5dde5 !important; --dark:#102a43 !important; --on-dark:#f7f9fb !important; }
+          header { position:sticky !important; top:0 !important; z-index:20 !important; background:#102a43 !important; color:#f7f9fb !important; border-bottom:3px solid #c6923a !important; box-shadow:0 3px 14px rgba(10,28,43,.16) !important; }
+          header .wrap { max-width:1180px !important; min-height:78px !important; padding:10px 24px !important; display:flex !important; align-items:center !important; justify-content:space-between !important; gap:24px !important; }
+          header .logo { display:inline-flex !important; align-items:center !important; flex:0 0 auto !important; }
+          header .logo img { display:block !important; width:min(230px,42vw) !important; max-height:54px !important; object-fit:contain !important; }
+          header .logo i { display:none !important; }
+          header nav { display:flex !important; align-items:center !important; justify-content:flex-end !important; gap:clamp(12px,2vw,26px) !important; overflow-x:auto !important; white-space:nowrap !important; }
+          header nav a { color:#f7f9fb !important; font:600 13px/1.2 Arial,Helvetica,sans-serif !important; letter-spacing:.09em !important; text-transform:uppercase !important; opacity:.9 !important; }
+          header nav a:hover { color:#e4bd70 !important; opacity:1 !important; }
+          #gallery .chips { display:flex !important; align-items:flex-end !important; gap:6px !important; margin:0 0 18px !important; border-bottom:2px solid var(--line) !important; overflow-x:auto !important; }
+          #gallery .chip { display:inline-flex !important; align-items:center !important; gap:8px !important; flex:0 0 auto !important; padding:10px 14px !important; margin:0 !important; border:1px solid var(--line) !important; border-bottom:0 !important; border-radius:8px 8px 0 0 !important; color:var(--steel) !important; background:#e8edf1 !important; white-space:nowrap !important; }
+          #gallery .chip::before { content:""; width:17px; height:14px; display:inline-block; background:currentColor; clip-path:polygon(0 18%,38% 18%,50% 34%,100% 34%,100% 100%,0 100%); }
+          #gallery .chip.on { color:#fff !important; background:var(--steel) !important; border-color:var(--steel) !important; }
+          #gallery .gal { padding:18px !important; background:#e8edf1 !important; border:1px solid var(--line) !important; border-radius:0 8px 8px 8px !important; }
+          #gallery .gi { padding:7px !important; border:1px solid var(--line) !important; border-radius:5px !important; background:#fff !important; box-shadow:0 2px 8px #102a4314 !important; }
+          #gallery .gi:hover { transform:translateY(-2px); box-shadow:0 5px 14px #102a4322 !important; }
+          .facebook-link { display:inline-flex; align-items:center; gap:9px; color:#e4bd70 !important; font-weight:600; }
+          .facebook-link svg { width:20px; height:20px; fill:currentColor; }
+          @media(max-width:760px) {
+            header .wrap { min-height:66px !important; padding:8px 16px !important; gap:14px !important; }
+            header .logo img { width:min(175px,38vw) !important; max-height:43px !important; }
+            header nav { gap:14px !important; }
+            header nav a { font-size:11px !important; letter-spacing:.04em !important; }
+            #gallery .chips { margin-right:-20px !important; padding-right:20px !important; }
+            #gallery .gal { padding:10px !important; }
           }
         </style>`;
         html = html.replace("</head>", styles + "</head>");
+
+        const facebook = `<a class="facebook-link" href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer" aria-label="Visit SNB Construction and Engineering on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.3H7.3v3.2h2.8V21h3.4z"/></svg><span>Follow us on Facebook</span></a>`;
+        if (html.includes("</footer>")) {
+          html = html.replace("</footer>", `<div class="wrap" style="padding:18px 20px 0">${facebook}</div></footer>`);
+        } else {
+          html = html.replace("</body>", `<footer style="padding:20px 5%;background:#102a43">${facebook}</footer></body>`);
+        }
+
         document.open();
         document.write(html);
         document.close();
