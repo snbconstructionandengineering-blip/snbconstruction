@@ -2,78 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="SNB Construction and Engineering — professional construction and engineering in Moulvibazar and Sylhet.">
   <title>SNB Construction &amp; Engineering</title>
+  <style>
+    :root {
+      --bg: #f3f5f7 !important;
+      --surface: #ffffff !important;
+      --ink: #172b3a !important;
+      --muted: #526273 !important;
+      --steel: #205b78 !important;
+      --accent: #c6923a !important;
+      --line: #d5dde5 !important;
+      --dark: #102a43 !important;
+      --on-dark: #f7f9fb !important;
+    }
+    .logo img {
+      display: block;
+      width: min(220px, 48vw);
+      height: auto;
+      max-height: 52px;
+      object-fit: contain;
+    }
+    .logo i { display: none !important; }
+    #gallery .chips {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      margin: 0 0 18px;
+      border-bottom: 2px solid var(--line);
+      overflow-x: auto;
+    }
+    #gallery .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      margin: 0;
+      border: 1px solid var(--line);
+      border-bottom: 0;
+      border-radius: 8px 8px 0 0;
+      color: var(--steel);
+      background: #e8edf1;
+      white-space: nowrap;
+    }
+    #gallery .chip::before {
+      content: "";
+      width: 17px;
+      height: 14px;
+      display: inline-block;
+      background: currentColor;
+      clip-path: polygon(0 18%, 38% 18%, 50% 34%, 100% 34%, 100% 100%, 0 100%);
+    }
+    #gallery .chip.on {
+      color: #fff;
+      background: var(--steel);
+      border-color: var(--steel);
+    }
+    #gallery .gal {
+      padding: 18px;
+      background: #e8edf1;
+      border: 1px solid var(--line);
+      border-radius: 0 8px 8px 8px;
+    }
+    #gallery .gi {
+      padding: 7px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 2px 8px #102a4314;
+    }
+    #gallery .gi:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 14px #102a4322;
+    }
+    .facebook-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      color: var(--accent) !important;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .facebook-link:hover { text-decoration: underline; }
+    @media (max-width: 760px) {
+      #gallery .chips { margin-right: -20px; padding-right: 20px; }
+      #gallery .gal { padding: 10px; }
+    }
+  </style>
 </head>
 <body>
-  <p id="loading">Loading SNB Construction &amp; Engineering…</p>
+  <p id="loading" style="font:16px system-ui;padding:2rem;color:#172b3a">Loading SNB Construction &amp; Engineering…</p>
   <script>
     (async function () {
       try {
-        const response = await fetch("./final%20index.html", { cache: "no-cache" });
+        // Load the last complete page version so its actual project details and photos stay intact.
+        const source = "https://raw.githubusercontent.com/snbconstructionandengineering-blip/snbconstruction/4811d9adba9d94cc819fd1f16d47b034ebf2403d/final%20index.html";
+        const response = await fetch(source, { cache: "force-cache" });
         if (!response.ok) throw new Error("Could not load the website page.");
         let html = await response.text();
 
-        const professionalStyles = `<style>
-          :root {
-            --bg: #f3f5f7 !important;
-            --surface: #ffffff !important;
-            --ink: #172b3a !important;
-            --muted: #526273 !important;
-            --steel: #205b78 !important;
-            --accent: #c6923a !important;
-            --line: #d5dde5 !important;
-            --dark: #102a43 !important;
-            --on-dark: #f7f9fb !important;
-          }
-          .logo i { width: 36px !important; height: 36px !important; background: var(--accent) !important; }
-          .logo i svg { display: block; width: 25px; height: 25px; }
-          #gallery .chips {
-            display: flex; align-items: flex-end; gap: 6px; margin: 0 0 18px;
-            border-bottom: 2px solid var(--line); overflow-x: auto;
-          }
-          #gallery .chip {
-            display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto;
-            padding: 10px 14px; margin: 0; border: 1px solid var(--line);
-            border-bottom: 0; border-radius: 8px 8px 0 0; color: var(--steel);
-            background: #e8edf1; white-space: nowrap;
-          }
-          #gallery .chip::before {
-            content: ""; width: 17px; height: 14px; display: inline-block;
-            background: currentColor;
-            clip-path: polygon(0 18%, 38% 18%, 50% 34%, 100% 34%, 100% 100%, 0 100%);
-          }
-          #gallery .chip.on { color: #fff; background: var(--steel); border-color: var(--steel); }
-          #gallery .gal { padding: 18px; background: #e8edf1; border: 1px solid var(--line); border-radius: 0 8px 8px 8px; }
-          #gallery .gi {
-            padding: 7px; border: 1px solid var(--line); border-radius: 5px;
-            background: #fff; box-shadow: 0 2px 8px #102a4314;
-          }
-          #gallery .gi:hover { transform: translateY(-2px); box-shadow: 0 5px 14px #102a4322; }
-          @media (max-width: 760px) {
-            #gallery .chips { margin-right: -20px; padding-right: 20px; }
-            #gallery .gal { padding: 10px; }
-          }
-        </style>`;
+        html = html.replace(
+          '<a class="logo" href="#top"><i>S</i>SNB Construction</a>',
+          '<a class="logo" href="#top" aria-label="SNB Construction and Engineering"><img src="./assets/snb-logo.svg" alt="SNB Construction and Engineering"></a>'
+        );
+        html = html.replace(
+          "</footer>",
+          '<p class="wrap"><a class="facebook-link" href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer">Visit SNB Construction on Facebook</a></p></footer>'
+        );
 
-        const logoScript = `<script>
-          document.addEventListener("DOMContentLoaded", function () {
-            const mark = document.querySelector(".logo i");
-            if (mark) {
-              mark.setAttribute("aria-hidden", "true");
-              mark.innerHTML = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 27V13L16 4l12 9v14H4Z" stroke="white" stroke-width="2.5"/><path d="M12 27V17h8v10M8 13h16" stroke="white" stroke-width="2.5" stroke-linejoin="round"/></svg>';
-            }
-          });
-        <\\/script>`;
-
-        html = html.replace("</head>", professionalStyles + "</head>");
-        html = html.replace("</body>", logoScript + "</body>");
         document.open();
         document.write(html);
         document.close();
       } catch (error) {
-        document.body.innerHTML = "<main style='font:16px system-ui;padding:2rem'><h1>Website could not load</h1><p>Please try refreshing. If this keeps happening, check that <code>final index.html</code> is still in the repository.</p></main>";
+        document.body.innerHTML = "<main style='font:16px system-ui;padding:2rem;color:#172b3a'><h1>Website could not load</h1><p>Please refresh the page. If the problem continues, check your internet connection.</p></main>";
       }
     })();
   </script>
