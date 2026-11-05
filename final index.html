@@ -417,6 +417,20 @@
       flex-wrap:wrap;
     }
 
+    .footer-links {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-links a {
+      color:#e9edf1;
+      opacity:0.95;
+    }
+
+    .footer-links a:hover { color:var(--gold); }
+
     @media (max-width: 900px){
       .about,
       .contact .wrap{
@@ -655,6 +669,10 @@
             <a href="mailto:info@snbconstruction.com">info@snbconstruction.com</a>
           </p>
           <p>
+            <strong>Facebook</strong>
+            <a href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer">Visit our Facebook page</a>
+          </p>
+          <p>
             <strong>Service Area</strong>
             Bangladesh
           </p>
@@ -666,7 +684,9 @@
   <footer>
     <div class="wrap">
       <span>© <span id="year"></span> SNB Construction &amp; Engineering</span>
-      <span>Building with quality, trust, and strength.</span>
+      <div class="footer-links">
+        <a href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
     </div>
   </footer>
 
