@@ -17,7 +17,8 @@
     const response=await fetch("https://raw.githubusercontent.com/snbconstructionandengineering-blip/snbconstruction/main/final%20index.html",{cache:"no-cache"});
     if(!response.ok)throw new Error("Could not load website.");
     const page=new DOMParser().parseFromString(await response.text(),"text/html");
-    const logo=page.querySelector(".brand img");if(logo){logo.src="assets/IMG_20261105_204654.jpg";logo.alt="SNB Construction and Engineering logo";}
+    const logo=page.querySelector(".brand img");
+    if(logo){logo.src="assets/IMG_20261105_204654.jpg";logo.alt="SNB Construction and Engineering logo";logo.style.background="transparent";logo.style.padding="0";logo.style.border="0";logo.style.mixBlendMode="multiply";}
 
     const servicesGrid=page.querySelector("#services .service-grid");
     if(servicesGrid){
@@ -38,8 +39,10 @@
       const photos=page.createElement("div");photos.className="gallery-grid";photos.style.marginTop="18px";
       completedPhotos.forEach((filename,index)=>{const image=page.createElement("div");image.className="gallery-item";image.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;image.setAttribute("role","img");image.setAttribute("aria-label",`Rupsha power plant completed project photo ${index+1}`);photos.append(image);});grid.after(photos);
     }
-    const gallery=page.querySelector("#gallery .gallery-grid");if(gallery)gallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
-    const projectsSection=page.querySelector("#projects"),ongoingGallery=page.querySelector("#gallery");if(projectsSection&&ongoingGallery)ongoingGallery.after(projectsSection);
+    const gallery=page.querySelector("#gallery .gallery-grid");
+    if(gallery)gallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
+    const projectsSection=page.querySelector("#projects"),ongoingGallery=page.querySelector("#gallery");
+    if(projectsSection&&ongoingGallery)ongoingGallery.after(projectsSection);
     document.open();document.write("<!doctype html>"+page.documentElement.outerHTML);document.close();
   }catch(error){document.body.innerHTML="<main style='font:16px system-ui;padding:2rem;color:#172b3a'><h1>Website could not load</h1><p>Please refresh the page and check GitHub Pages deployment.</p></main>";}
 })();
