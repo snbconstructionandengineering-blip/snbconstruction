@@ -50,6 +50,16 @@
         const logo = page.querySelector(".brand img");
         if (logo) logo.src = "assets/snb-logo.svg";
 
+        // Use SNB's uploaded project photos instead of the template stock photos.
+        page.querySelectorAll("#projects .project-card .photo").forEach((photo, index) => {
+          const filename = photos[index];
+          if (filename) {
+            photo.style.backgroundImage = `url("assets/${filename}")`;
+            photo.setAttribute("role", "img");
+            photo.setAttribute("aria-label", `SNB construction project photo ${index + 1}`);
+          }
+        });
+
         const gallery = page.querySelector("#gallery .gallery-grid");
         if (gallery) {
           gallery.replaceChildren(...photos.map((filename, index) => {
