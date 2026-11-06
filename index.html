@@ -18,7 +18,7 @@
     if(!response.ok)throw new Error("Could not load website.");
     const page=new DOMParser().parseFromString(await response.text(),"text/html");
     const logo=page.querySelector(".brand img");
-    if(logo){logo.src="assets/IMG_20261105_204654.jpg";logo.alt="SNB Construction and Engineering logo";logo.style.background="transparent";logo.style.padding="0";logo.style.border="0";logo.style.mixBlendMode="multiply";}
+    if(logo){logo.src="assets/173578bc-57f4-490d-a7ba-76f0ea6e7857.png";logo.alt="SNB Construction and Engineering logo";}
 
     const servicesGrid=page.querySelector("#services .service-grid");
     if(servicesGrid){
