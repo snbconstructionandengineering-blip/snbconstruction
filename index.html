@@ -14,7 +14,7 @@
   <p id="loading">Loading SNB Construction &amp; Engineering…</p>
   <script>
     (async function () {
-      const photos = [
+      const ongoingPhotos = [
         "IMG-20250816-WA0020.jpg",
         "IMG-20250816-WA0021.jpg",
         "IMG-20250816-WA0079.jpg",
@@ -38,6 +38,28 @@
         "IMG_20251129_211417.jpg",
         "IMG_20251129_211431.jpg"
       ];
+      const completedPhotos = [
+        "1.png",
+        "2022-05-25 12_59_31.jpg",
+        "IMG-20250526-WA0002.jpg",
+        "IMG-20250526-WA0010.jpg",
+        "IMG-20250526-WA0012.jpg",
+        "IMG-20250526-WA0021.jpg",
+        "IMG-20250526-WA0024.jpg",
+        "IMG-20250526-WA0033.jpg",
+        "IMG-20250526-WA0039.jpg",
+        "IMG-20250526-WA0040.jpg",
+        "IMG-20250526-WA0042.jpg",
+        "IMG-20250526-WA0047.jpg",
+        "IMG-20250526-WA0056.jpg",
+        "IMG-20250526-WA0058.jpg",
+        "IMG-20250526-WA0059.jpg",
+        "IMG-20250526-WA0061.jpg",
+        "IMG-20250526-WA0066.jpg",
+        "IMG-20250526-WA0071.jpg",
+        "IMG-20250526-WA0073.jpg",
+        "IMG-20250526-WA0080.jpg"
+      ];
 
       try {
         const source = "https://raw.githubusercontent.com/snbconstructionandengineering-blip/snbconstruction/main/final%20index.html";
@@ -50,24 +72,62 @@
         const logo = page.querySelector(".brand img");
         if (logo) logo.src = "assets/snb-logo.svg";
 
-        // Use SNB's uploaded project photos instead of the template stock photos.
-        page.querySelectorAll("#projects .project-card .photo").forEach((photo, index) => {
-          const filename = photos[index];
-          if (filename) {
-            photo.style.backgroundImage = `url("assets/${filename}")`;
-            photo.setAttribute("role", "img");
-            photo.setAttribute("aria-label", `SNB construction project photo ${index + 1}`);
+        // Show the completed Rupsha power plant as a named project with its uploaded photos.
+        const projects = page.querySelector("#projects");
+        if (projects) {
+          const wrap = projects.querySelector(".wrap");
+          const heading = projects.querySelector(".section-head");
+          const grid = projects.querySelector(".projects-grid");
+          if (heading) {
+            const eyebrow = heading.querySelector(".eyebrow");
+            const title = heading.querySelector("h2");
+            if (eyebrow) eyebrow.textContent = "Completed project";
+            if (title) title.textContent = "Rupsha 800MW Dual cycle Power plant";
           }
-        });
+          if (grid) {
+            grid.replaceChildren();
+            const card = page.createElement("article");
+            card.className = "project-card";
+            const cover = page.createElement("div");
+            cover.className = "photo";
+            cover.style.backgroundImage = `url("assets/${encodeURIComponent(completedPhotos[0])}")`;
+            cover.setAttribute("role", "img");
+            cover.setAttribute("aria-label", "Rupsha 800MW Dual cycle Power plant project photo");
+            const info = page.createElement("div");
+            info.className = "info";
+            const name = page.createElement("h3");
+            name.textContent = "Rupsha 800MW Dual cycle Power plant";
+            const location = page.createElement("p");
+            location.textContent = "Khalishpur, Khulna";
+            info.append(name, location);
+            card.append(cover, info);
+            grid.append(card);
 
+            const photoGallery = page.createElement("div");
+            photoGallery.className = "gallery-grid";
+            photoGallery.style.marginTop = "18px";
+            completedPhotos.forEach((filename, index) => {
+              const image = page.createElement("div");
+              image.className = "gallery-item";
+              image.style.backgroundImage = `url("assets/${encodeURIComponent(filename)}")`;
+              image.setAttribute("role", "img");
+              image.setAttribute("aria-label", `Rupsha power plant completed project photo ${index + 1}`);
+              photoGallery.append(image);
+            });
+            grid.after(photoGallery);
+          }
+          if (wrap) wrap.setAttribute("aria-label", "Completed project: Rupsha 800MW Dual cycle Power plant, Khalishpur, Khulna");
+        }
+
+        // Keep the existing precast girder photos in the separate ongoing-project gallery.
         const gallery = page.querySelector("#gallery .gallery-grid");
         if (gallery) {
-          gallery.replaceChildren(...photos.map((filename, index) => {
+          gallery.replaceChildren(...ongoingPhotos.map((filename, index) => {
             const item = page.createElement("div");
             item.className = "gallery-item";
             item.setAttribute("role", "img");
             item.setAttribute("aria-label", `SNB precast girder project photo ${index + 1}`);
-            item.style.backgroundImage = `url("assets/${filename}")`;
+            item.style.backgroundImage = `url("assets/${encodeURIComponent(filename)}")`;
             return item;
           }));
         }
