@@ -59,8 +59,8 @@
       wrap.append(heading,breakdownHeading,breakdown,gallery);manpowerSection.append(wrap);ongoingSection.after(manpowerSection);
     }
 
-    const projects=page.querySelector("#projects"),heading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
-    if(heading){const eyebrow=heading.querySelector(".eyebrow"),title=heading.querySelector("h2");if(eyebrow)eyebrow.textContent="Completed project";if(title)title.textContent="Rupsha 800MW Dual cycle Power plant";}
+    const projects=page.querySelector("#projects"),projectHeading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
+    if(projectHeading){const eyebrow=projectHeading.querySelector(".eyebrow"),title=projectHeading.querySelector("h2");if(eyebrow)eyebrow.textContent="Completed project";if(title)title.textContent="Rupsha 800MW Dual cycle Power plant";}
     if(grid){
       grid.replaceChildren();
       const card=page.createElement("article");card.className="project-card";
@@ -71,8 +71,15 @@
     }
     const ongoingGallery=page.querySelector("#gallery .gallery-grid");
     if(ongoingGallery)ongoingGallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
-    const projectsSection=page.querySelector("#projects"),gallerySection=page.querySelector("#gallery");
-    if(projectsSection&&gallerySection)gallerySection.after(projectsSection);
+
+    const ongoingProjectSection=page.querySelector("#ongoing-projects");
+    const precastGallerySection=page.querySelector("#gallery");
+    const manpowerGallerySection=page.querySelector("#manpower-gallery");
+    const projectsSection=page.querySelector("#projects");
+    if(ongoingProjectSection&&precastGallerySection)ongoingProjectSection.after(precastGallerySection);
+    if(precastGallerySection&&manpowerGallerySection)precastGallerySection.after(manpowerGallerySection);
+    if(manpowerGallerySection&&projectsSection)manpowerGallerySection.after(projectsSection);
+
     document.open();document.write("<!doctype html>"+page.documentElement.outerHTML);document.close();
   }catch(error){document.body.innerHTML="<main style='font:16px system-ui;padding:2rem;color:#172b3a'><h1>Website could not load</h1><p>Please refresh the page and check GitHub Pages deployment.</p></main>";}
 })();
