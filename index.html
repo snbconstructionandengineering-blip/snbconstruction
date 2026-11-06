@@ -60,14 +60,28 @@
     }
 
     const projects=page.querySelector("#projects"),projectHeading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
-    if(projectHeading){const eyebrow=projectHeading.querySelector(".eyebrow"),title=projectHeading.querySelector("h2");if(eyebrow)eyebrow.textContent="Completed project";if(title)title.textContent="Rupsha 800MW Dual cycle Power plant";}
+    if(projectHeading){const eyebrow=projectHeading.querySelector(".eyebrow"),title=projectHeading.querySelector("h2");if(eyebrow)eyebrow.textContent="Completed projects";if(title)title.textContent="Our completed work";}
     if(grid){
       grid.replaceChildren();
-      const card=page.createElement("article");card.className="project-card";
-      const cover=page.createElement("div");cover.className="photo";cover.style.backgroundImage=`url("assets/${encodeURIComponent(completedPhotos[0])}")`;cover.setAttribute("role","img");cover.setAttribute("aria-label","Rupsha 800MW Dual cycle Power plant project photo");
-      const info=page.createElement("div");info.className="info";const name=page.createElement("h3");name.textContent="Rupsha 800MW Dual cycle Power plant";const location=page.createElement("p");location.textContent="Khalishpur, Khulna";info.append(name,location);card.append(cover,info);grid.append(card);
+      const completedProjects=[
+        {name:"Payra 1320 MW Thermal Power Plant",owner:"Bangladesh China Power Company Ltd.",contractor:"China Energy Engineering Group Northeast No. 1 Electric Power Construction Co., Ltd.",completion:"2022"},
+        {name:"Summit Meghnaghat 400 MW CCPP Power Plant",owner:"Summit Group",contractor:"China Energy Engineering Group Northeast No. 1 Electric Power Construction Co., Ltd.",completion:"2020"},
+        {name:"North West Power Generation, Mollarhat 100 MW Power Plant",contractor:"China Energy Engineering Group Northeast No. 1 Electric Power Construction Co., Ltd.",address:"Mollarhat, Bagerhat, Khulna",completion:"2019"},
+        {name:"Rupsha 800MW Dual cycle Power plant",address:"Khalishpur, Khulna",photos:true},
+        {name:"Rupsha Water Treatment Plant",contractor:"China Harbour Engineering Company Ltd."}
+      ];
+      completedProjects.forEach((project,index)=>{
+        const projectCard=page.createElement("article");projectCard.className="project-card";
+        if(project.photos){const photo=page.createElement("div");photo.className="photo";photo.style.backgroundImage=`url("assets/${encodeURIComponent(completedPhotos[0])}")`;photo.setAttribute("role","img");photo.setAttribute("aria-label",`${project.name} photo`);projectCard.append(photo);}
+        const details=page.createElement("div");details.className="info";
+        const projectName=page.createElement("h3");projectName.textContent=project.name;details.append(projectName);
+        const addDetail=(label,value)=>{if(!value)return;const paragraph=page.createElement("p");paragraph.style.marginTop="8px";const strong=page.createElement("strong");strong.textContent=label+": ";paragraph.append(strong,page.createTextNode(value));details.append(paragraph);};
+        addDetail("Owner",project.owner);addDetail("Contractor",project.contractor);addDetail("Address",project.address);addDetail("Completion year",project.completion);
+        projectCard.append(details);grid.append(projectCard);
+      });
       const photos=page.createElement("div");photos.className="gallery-grid";photos.style.marginTop="18px";
-      completedPhotos.forEach((filename,index)=>{const image=page.createElement("div");image.className="gallery-item";image.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;image.setAttribute("role","img");image.setAttribute("aria-label",`Rupsha power plant completed project photo ${index+1}`);photos.append(image);});grid.after(photos);
+      completedPhotos.forEach((filename,index)=>{const image=page.createElement("div");image.className="gallery-item";image.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;image.setAttribute("role","img");image.setAttribute("aria-label",`Rupsha power plant completed project photo ${index+1}`);photos.append(image);});
+      grid.after(photos);
     }
     const ongoingGallery=page.querySelector("#gallery .gallery-grid");
     if(ongoingGallery)ongoingGallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
