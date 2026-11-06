@@ -37,9 +37,26 @@
       const heading=page.createElement("div");heading.className="section-head";
       const eyebrow=page.createElement("p");eyebrow.className="eyebrow";eyebrow.style.cssText="margin-bottom:12px;color:var(--steel);letter-spacing:.08em";eyebrow.textContent="Our team";
       const title=page.createElement("h2");title.textContent="Manpower Supply";heading.append(eyebrow,title);
+
+      const breakdownHeading=page.createElement("p");breakdownHeading.textContent="Manpower categories";breakdownHeading.style.cssText="font-weight:700;color:var(--steel);margin:0 0 14px";
+      const breakdown=page.createElement("div");breakdown.className="service-grid";breakdown.style.marginBottom="28px";
+      const manpowerTypes=[
+        ["Skilled Trades","Experienced tradespeople for construction and site work, including masonry, carpentry, steel fixing, and welding."],
+        ["General Site Workforce","Dependable general workers for material handling, site preparation, and day-to-day project support."],
+        ["Technical Personnel","Technical and engineering staff to support site coordination, measurement, quality, and safety requirements."],
+        ["Supervisors &amp; Team Leaders","Site supervisors and team leaders to coordinate crews, work schedules, and on-site activities."]
+      ];
+      manpowerTypes.forEach(([category,details],index)=>{
+        const card=page.createElement("article");card.className="service-card";
+        const number=page.createElement("span");number.className="num";number.textContent=String(index+1).padStart(2,"0");
+        const title=page.createElement("h3");title.textContent=category;
+        const description=page.createElement("p");description.textContent=details;
+        card.append(number,title,description);breakdown.append(card);
+      });
+
       const gallery=page.createElement("div");gallery.className="gallery-grid";
       manpowerPhotos.forEach((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`Manpower supply team photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;gallery.append(item);});
-      wrap.append(heading,gallery);manpowerSection.append(wrap);ongoingSection.after(manpowerSection);
+      wrap.append(heading,breakdownHeading,breakdown,gallery);manpowerSection.append(wrap);ongoingSection.after(manpowerSection);
     }
 
     const projects=page.querySelector("#projects"),heading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
