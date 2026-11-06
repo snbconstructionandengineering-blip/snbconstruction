@@ -1,71 +1,726 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="SNB Construction and Engineering provides professional construction and engineering services throughout Bangladesh.">
-  <title>SNB Construction &amp; Engineering</title>
+  <title>SNB Construction and Engineering | Bangladesh</title>
+  <meta name="description" content="SNB Construction and Engineering delivers premium construction and engineering services across Bangladesh.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body { margin: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; color: #172b3a; background: #f3f5f7; }
-    #loading { padding: 2rem; }
+    :root{
+      --bg:#eef1f3;
+      --surface:#ffffff;
+      --ink:#17242d;
+      --muted:#53616a;
+      --steel:#1a3d57;
+      --steel-2:#2c5b7a;
+      --gold:#d4af63;
+      --gold-soft:#f0d79a;
+      --dark:#0f1d2a;
+      --line:#dfe6eb;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font:400 17px/1.7 "Barlow", Arial, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    h1,h2,h3{margin:0; font-family:"Barlow Condensed", Arial, sans-serif; line-height:1.05; letter-spacing:.01em}
+    p{margin:0 0 16px}
+    .wrap{
+      width:min(1120px, calc(100% - 34px));
+      margin:0 auto;
+    }
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:linear-gradient(180deg, rgba(15,29,42,0.97), rgba(15,29,42,0.92));
+      border-bottom:1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .site-header .wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      min-height:86px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+      min-width:0;
+    }
+
+    .brand img{
+      height:62px;
+      width:auto;
+      display:block;
+      object-fit:contain;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .nav a{
+      color:#edf2f6;
+      font-size:.95rem;
+      font-weight:600;
+      letter-spacing:.02em;
+      opacity:.9;
+    }
+
+    .nav a:hover{color:var(--gold)}
+
+    .btn{
+      display:inline-block;
+      padding:12px 20px;
+      border-radius:6px;
+      font-weight:700;
+      letter-spacing:.02em;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-1px)}
+
+    .quote-btn{
+      background:linear-gradient(135deg, var(--gold), #b98b2d);
+      color:#101010;
+      box-shadow:0 8px 22px rgba(212,175,99,0.22);
+      white-space:nowrap;
+    }
+
+    .hero{
+      position:relative;
+      background:
+        linear-gradient(90deg, rgba(13,23,33,0.92), rgba(13,23,33,0.62)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      color:#fff;
+      min-height:650px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(125deg, rgba(212,175,99,0.14), transparent 32%, transparent 70%, rgba(130,175,208,0.08)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 70px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 70px);
+      opacity:0.5;
+    }
+
+    .hero .wrap{
+      position:relative;
+      z-index:1;
+      padding:86px 0 110px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      margin:0 0 18px;
+      color:var(--gold-soft);
+      font-size:.8rem;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .hero h1{
+      max-width:780px;
+      font-size:clamp(2.8rem,5vw,5.4rem);
+      font-weight:700;
+      margin-bottom:18px;
+      color:#fff;
+    }
+
+    .hero p{
+      max-width:760px;
+      font-size:1.08rem;
+      color:#edf2f6;
+      line-height:1.8;
+    }
+
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .hero .btn-primary{
+      background:linear-gradient(135deg, var(--gold), #b98b2d);
+      color:#131313;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 12px 28px rgba(212,175,99,0.26);
+    }
+
+    .hero .btn-secondary{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.22);
+      color:#fff;
+    }
+
+    section{padding:74px 0}
+
+    .section-head{
+      margin-bottom:28px;
+      max-width:700px;
+    }
+
+    .section-head h2{
+      font-size:clamp(2.1rem,4vw,3.4rem);
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:8px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      font-size:1.02rem;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:1.3fr 1fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .about-image{
+      min-height:420px;
+      border-radius:12px;
+      background:
+        linear-gradient(180deg, rgba(17,29,42,0.18), rgba(17,29,42,0.18)),
+        url("https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      box-shadow:0 22px 34px rgba(17,29,42,0.08);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+
+    .stat{
+      background:var(--surface);
+      border-left:5px solid var(--gold);
+      padding:18px 18px 18px 20px;
+      box-shadow:0 8px 20px rgba(17,29,42,0.03);
+    }
+
+    .stat strong{
+      display:block;
+      font-family:"Barlow Condensed", Arial, sans-serif;
+      font-size:2rem;
+      line-height:1;
+      margin-bottom:6px;
+      color:var(--steel);
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .services{
+      background:linear-gradient(180deg, #f5f3ef, #eef4f7);
+    }
+
+    .service-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .service-card{
+      background:var(--surface);
+      padding:26px 22px;
+      border:1px solid var(--line);
+      border-top:4px solid var(--steel);
+      box-shadow:0 4px 14px rgba(17,29,42,0.03);
+    }
+
+    .service-card .num{
+      display:inline-block;
+      font-family:"Barlow Condensed", Arial, sans-serif;
+      color:var(--gold);
+      font-size:1.35rem;
+      font-weight:700;
+      margin-bottom:10px;
+      letter-spacing:.08em;
+    }
+
+    .service-card h3{
+      font-size:1.6rem;
+      color:var(--ink);
+      margin-bottom:8px;
+      font-weight:600;
+    }
+
+    .service-card p{
+      color:var(--muted);
+      margin:0;
+    }
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .project-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(17,29,42,0.04);
+    }
+
+    .project-card .photo{
+      height:240px;
+      background-size:cover;
+      background-position:center;
+    }
+
+    .project-card:nth-child(1) .photo{
+      background-image:url("https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80");
+    }
+    .project-card:nth-child(2) .photo{
+      background-image:url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80");
+    }
+    .project-card:nth-child(3) .photo{
+      background-image:url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80");
+    }
+
+    .project-card .info{
+      padding:18px 18px 20px;
+    }
+
+    .project-card h3{
+      font-size:1.5rem;
+      margin-bottom:6px;
+      color:var(--ink);
+      font-weight:600;
+    }
+
+    .project-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .gallery{
+      background:linear-gradient(180deg, #f8fafb, #eef3f6);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+
+    .gallery-item{
+      position:relative;
+      overflow:hidden;
+      min-height:180px;
+      border:1px solid var(--line);
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 10px 18px rgba(17,29,42,0.04);
+    }
+
+    .gallery-item:nth-child(1){background-image:url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80")}
+    .gallery-item:nth-child(2){background-image:url("https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80")}
+    .gallery-item:nth-child(3){background-image:url("https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=80")}
+    .gallery-item:nth-child(4){background-image:url("https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80")}
+
+    .contact{
+      background:var(--dark);
+      color:#eaf1f7;
+    }
+
+    .contact .wrap{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:32px;
+      align-items:start;
+    }
+
+    .contact h2{
+      font-size:clamp(2.1rem,4vw,3.4rem);
+      color:#fff;
+      margin-bottom:12px;
+      font-weight:600;
+    }
+
+    .contact p{
+      color:#d8e1e6;
+      max-width:600px;
+    }
+
+    .contact-box{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.14);
+      padding:24px 22px;
+      border-radius:10px;
+    }
+
+    .contact-box p{
+      margin-bottom:14px;
+    }
+
+    .contact-box strong{
+      display:block;
+      color:var(--gold-soft);
+      margin-bottom:6px;
+      font-size:0.82rem;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+
+    .contact-box a{
+      color:#fff;
+      font-weight:600;
+    }
+
+    footer{
+      background:#0b141c;
+      color:#dfeaf0;
+      padding:24px 0 30px;
+      font-size:.9rem;
+    }
+
+    footer .wrap{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-links {
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .footer-links a {
+      color:#e9edf1;
+      opacity:0.95;
+    }
+
+    .footer-links a:hover { color:var(--gold); }
+
+    @media (max-width: 900px){
+      .about,
+      .contact .wrap{
+        grid-template-columns:1fr;
+      }
+      .service-grid,
+      .projects-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .gallery-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 700px){
+      .site-header .wrap{
+        flex-wrap:wrap;
+        justify-content:center;
+        padding-top:14px;
+        padding-bottom:14px;
+      }
+
+      .nav{
+        width:100%;
+        gap:12px 18px;
+      }
+
+      .brand img{
+        height:52px;
+      }
+
+      .hero{
+        min-height:560px;
+      }
+
+      .hero .wrap{
+        padding-top:60px;
+        padding-bottom:80px;
+      }
+
+      .service-grid,
+      .projects-grid,
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .btn{
+        width:100%;
+        text-align:center;
+      }
+
+      .btns{
+        width:100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <p id="loading">Loading SNB Construction &amp; Engineering…</p>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="SNB Construction and Engineering">
+        <img src="assets/snb-logo-gold.svg" alt="SNB Construction and Engineering logo">
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#ongoing-projects">Ongoing Project</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn quote-btn" href="#contact">Request a Quote</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Excellence in Every Detail. Strength in Every Structure.</p>
+        <h1>SNB Construction &amp; Engineering</h1>
+        <p>
+          Delivering distinguished construction and engineering solutions across Bangladesh —
+          combining refined craftsmanship, technical precision, and enduring quality for
+          residential, commercial, and industrial projects.
+        </p>
+        <div class="btns">
+          <a class="btn hero btn-primary" href="#contact">Request a Consultation</a>
+          <a class="btn hero btn-secondary" href="#ongoing-projects">View Ongoing Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <div class="section-head">
+            <p class="eyebrow" style="margin-bottom:12px; color:var(--steel); letter-spacing:.08em;">About us</p>
+            <h2>Built on trust. Defined by quality.</h2>
+          </div>
+          <p>SNB Construction and Engineering is a trusted construction partner delivering professional solutions for homes, commercial developments, and civil works across Bangladesh.</p>
+          <p>From planning and structural work to finishing and project handover, we focus on durability, clarity, and client confidence at every stage.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>All Types</strong>
+            <span>of construction work delivered with care and precision</span>
+          </div>
+          <div class="stat">
+            <strong>On-Site</strong>
+            <span>engineering supervision throughout each project</span>
+          </div>
+          <div class="stat">
+            <strong>Across Bangladesh</strong>
+            <span>local expertise with dependable national reach</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="margin-bottom:12px; color:var(--steel); letter-spacing:.08em;">What we do</p>
+          <h2>Construction expertise, delivered with discipline.</h2>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="num">01</span>
+            <h3>Residential Construction</h3>
+            <p>Modern homes and private developments built for comfort, strength and long-term value.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="num">02</span>
+            <h3>Commercial Projects</h3>
+            <p>Reliable construction services for offices, shops, facilities and business spaces.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="num">03</span>
+            <h3>Civil &amp; Structural Work</h3>
+            <p>Foundations, civil works, structural support and engineering supervision for demanding sites.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="num">04</span>
+            <h3>Renovation &amp; Finishing</h3>
+            <p>Interior and exterior renovation, finishing, repairs and upgrade services for existing structures.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="num">05</span>
+            <h3>Project Planning</h3>
+            <p>Strategic planning and site coordination to keep timelines, quality and resources aligned.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="num">06</span>
+            <h3>Maintenance &amp; Upgrades</h3>
+            <p>Structural improvement, repair and upkeep that protects the value and performance of your property.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="ongoing-projects">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="margin-bottom:12px; color:var(--steel); letter-spacing:.08em;">Current project</p>
+          <h2>Ongoing work</h2>
+        </div>
+
+        <div class="service-grid" style="grid-template-columns: 1fr; max-width: 920px; margin: 0 auto;">
+          <article class="service-card" style="border-top:4px solid var(--gold);">
+            <span class="num" style="color:var(--steel);">DS-10</span>
+            <h3>SASEC Dhaka-Sylhet Highway Corridor Investment Project</h3>
+            <p><strong>Contractor:</strong> China Railway First Group</p>
+            <p><strong>Subcontractor:</strong> SNB Construction and Engineering</p>
+            <p><strong>Work package:</strong> Pre-cast girder fabrication and prestressing</p>
+            <p style="margin-top:10px;">
+              The project includes the fabrication of long-span bridge girders using steel molds, dense reinforcement cages, and controlled formwork preparation before concrete placement and prestressing. This work supports the construction of high-quality bridge and highway components for a major transport corridor in Bangladesh.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="margin-bottom:12px; color:var(--steel); letter-spacing:.08em;">Recent work</p>
+          <h2>Selected projects</h2>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="photo"></div>
+            <div class="info">
+              <h3>Commercial Development</h3>
+              <p>Completed work for a business-ready structure designed for operational efficiency.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="photo"></div>
+            <div class="info">
+              <h3>Industrial Construction</h3>
+              <p>Heavy-duty structural work and finish coordination for demanding industrial environments.</p>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="photo"></div>
+            <div class="info">
+              <h3>Residential Build</h3>
+              <p>Thoughtful residential construction focusing on functionality, strength, and finishing quality.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow" style="margin-bottom:12px; color:var(--steel); letter-spacing:.08em;">Gallery</p>
+          <h2>Pre-cast girder fabrication and prestressing</h2>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item" aria-label="Precast girder fabrication gallery image 1"></div>
+          <div class="gallery-item" aria-label="Precast girder fabrication gallery image 2"></div>
+          <div class="gallery-item" aria-label="Precast girder fabrication gallery image 3"></div>
+          <div class="gallery-item" aria-label="Precast girder fabrication gallery image 4"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow" style="margin:0 0 14px; color:var(--gold-soft);">Let’s build</p>
+          <h2>Start your next project with SNB.</h2>
+          <p>We are ready to discuss your construction requirements, renovation plans, or engineering needs anywhere in Bangladesh.</p>
+        </div>
+
+        <div class="contact-box">
+          <p>
+            <strong>Phone</strong>
+            <a href="tel:+8801712658551">+880 1712-658551</a><br>
+            <a href="tel:+8801716439192">+880 1716-439192</a><br>
+            <a href="tel:+8801849677961">+880 1849-677961</a>
+          </p>
+          <p>
+            <strong>Email</strong>
+            <a href="mailto:snbconstructionandengineering@gmail.com">snbconstructionandengineering@gmail.com</a>
+          </p>
+          <p>
+            <strong>Address</strong>
+            Flat#01, 1st floor, Fahad Chowdhury Apartment, Sherpur Bazar, Moulvibazar, Sylhet, Bangladesh.
+          </p>
+          <p>
+            <strong>Facebook</strong>
+            <a href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer">Visit our Facebook page</a>
+          </p>
+          <p>
+            <strong>Service Area</strong>
+            Bangladesh
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> SNB Construction &amp; Engineering</span>
+      <div class="footer-links">
+        <a href="https://www.facebook.com/share/1CHEQ1rjdH/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    (async function () {
-      try {
-        const source = "https://raw.githubusercontent.com/snbconstructionandengineering-blip/snbconstruction/main/final%20index.html";
-        const response = await fetch(source, { cache: "no-cache" });
-        if (!response.ok) throw new Error("Could not load the website page.");
-
-        const parser = new DOMParser();
-        const page = parser.parseFromString(await response.text(), "text/html");
-
-        // Use the logo file that exists in the repository.
-        const logo = page.querySelector(".brand img");
-        if (logo) logo.src = "assets/snb-logo.svg";
-
-        // Make the live project easy to find from the main navigation.
-        const navigation = page.querySelector(".nav");
-        if (navigation && !page.querySelector('.nav a[href="#ongoing-projects"]')) {
-          const link = page.createElement("a");
-          link.href = "#ongoing-projects";
-          link.textContent = "Ongoing Project";
-          navigation.insertBefore(link, navigation.querySelector('a[href="#projects"]'));
-        }
-
-        // Add the project details provided by SNB without assuming its work package or status.
-        if (!page.querySelector("#ongoing-projects")) {
-          const section = page.createElement("section");
-          section.className = "services";
-          section.id = "ongoing-projects";
-          section.innerHTML = `
-            <div class="wrap">
-              <div class="section-head">
-                <p class="eyebrow" style="margin-bottom:12px;color:var(--steel);letter-spacing:.08em">Current project</p>
-                <h2>Ongoing project</h2>
-              </div>
-              <div class="service-grid" style="grid-template-columns:1fr;max-width:920px;margin:0 auto">
-                <article class="service-card" style="border-top:4px solid var(--gold)">
-                  <span class="num" style="color:var(--steel)">DS-10</span>
-                  <h3>SASEC Dhaka-Sylhet Highway Corridor Investment Project</h3>
-                  <p><strong>Contractor:</strong> China Railway First Group</p>
-                  <p><strong>Subcontractor:</strong> SNB Construction and Engineering</p>
-                </article>
-              </div>
-            </div>`;
-          const projects = page.querySelector("#projects");
-          if (projects) projects.before(section);
-        }
-
-        document.open();
-        document.write("<!doctype html>" + page.documentElement.outerHTML);
-        document.close();
-      } catch (error) {
-        document.body.innerHTML = "<main style='font:16px system-ui;padding:2rem;color:#172b3a'><h1>Website could not load</h1><p>Please refresh the page. If the problem continues, check that the website source page is available.</p></main>";
-      }
-    })();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
