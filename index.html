@@ -20,6 +20,8 @@
     const page=new DOMParser().parseFromString(await response.text(),"text/html");
     const logo=page.querySelector(".brand img");
     if(logo){logo.src="assets/173578bc-57f4-490d-a7ba-76f0ea6e7857.png";logo.alt="SNB Construction and Engineering logo";}
+    const companyHeading=page.querySelector(".hero h1");
+    if(companyHeading){companyHeading.textContent="SNB CONSTRUCTION & ENGINEERING";companyHeading.style.color="var(--gold)";companyHeading.style.fontWeight="800";companyHeading.style.textTransform="uppercase";}
 
     const servicesGrid=page.querySelector("#services .service-grid");
     if(servicesGrid&&!servicesGrid.querySelector('[data-service="manpower"]')){
@@ -37,14 +39,13 @@
       const heading=page.createElement("div");heading.className="section-head";
       const eyebrow=page.createElement("p");eyebrow.className="eyebrow";eyebrow.style.cssText="margin-bottom:12px;color:var(--steel);letter-spacing:.08em";eyebrow.textContent="Our team";
       const title=page.createElement("h2");title.textContent="Manpower Supply";heading.append(eyebrow,title);
-
       const breakdownHeading=page.createElement("p");breakdownHeading.textContent="Manpower categories";breakdownHeading.style.cssText="font-weight:700;color:var(--steel);margin:0 0 14px";
       const breakdown=page.createElement("div");breakdown.className="service-grid";breakdown.style.marginBottom="28px";
       const manpowerTypes=[
         ["Skilled Trades","Experienced tradespeople for construction and site work, including masonry, carpentry, steel fixing, and welding."],
         ["General Site Workforce","Dependable general workers for material handling, site preparation, and day-to-day project support."],
         ["Technical Personnel","Technical and engineering staff to support site coordination, measurement, quality, and safety requirements."],
-        ["Supervisors &amp; Team Leaders","Site supervisors and team leaders to coordinate crews, work schedules, and on-site activities."]
+        ["Supervisors & Team Leaders","Site supervisors and team leaders to coordinate crews, work schedules, and on-site activities."]
       ];
       manpowerTypes.forEach(([category,details],index)=>{
         const card=page.createElement("article");card.className="service-card";
@@ -53,7 +54,6 @@
         const description=page.createElement("p");description.textContent=details;
         card.append(number,title,description);breakdown.append(card);
       });
-
       const gallery=page.createElement("div");gallery.className="gallery-grid";
       manpowerPhotos.forEach((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`Manpower supply team photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;gallery.append(item);});
       wrap.append(heading,breakdownHeading,breakdown,gallery);manpowerSection.append(wrap);ongoingSection.after(manpowerSection);
