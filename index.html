@@ -18,6 +18,17 @@
     if(!response.ok)throw new Error("Could not load website.");
     const page=new DOMParser().parseFromString(await response.text(),"text/html");
     const logo=page.querySelector(".brand img");if(logo){logo.src="assets/1.png";logo.alt="SNB Construction and Engineering logo";}
+
+    // Add Manpower Supply as an additional service category.
+    const servicesGrid=page.querySelector("#services .service-grid");
+    if(servicesGrid){
+      const service=page.createElement("article");service.className="service-card";
+      const number=page.createElement("span");number.className="num";number.textContent="07";
+      const title=page.createElement("h3");title.textContent="Manpower Supply";
+      const description=page.createElement("p");description.textContent="Reliable supply of skilled and general manpower to support construction, industrial, and project site operations.";
+      service.append(number,title,description);servicesGrid.append(service);
+    }
+
     const projects=page.querySelector("#projects"),heading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
     if(heading){const eyebrow=heading.querySelector(".eyebrow"),title=heading.querySelector("h2");if(eyebrow)eyebrow.textContent="Completed project";if(title)title.textContent="Rupsha 800MW Dual cycle Power plant";}
     if(grid){
