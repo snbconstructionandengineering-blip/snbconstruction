@@ -12,6 +12,7 @@
 <script>
 (async function(){
   const ongoingPhotos=["IMG-20250816-WA0020.jpg","IMG-20250816-WA0021.jpg","IMG-20250816-WA0079.jpg","IMG-20250816-WA0104.jpg","IMG-20250819-WA0002.jpg","IMG-20250819-WA0043.jpg","IMG-20250823-WA0009.jpg","IMG-20250827-WA0051.jpg","IMG-20250828-WA0055.jpg","IMG-20250831-WA0019.jpg","IMG-20251115-WA0011.jpg","IMG-20251118-WA0005.jpg","IMG-20251124-WA0056.jpg","IMG-20251202-WA0044.jpg","IMG20241014173127.jpg","IMG20250601160609.jpg","IMG20251127212020.jpg","IMG20251209163512.jpg","IMG_20251129_130926.jpg","IMG_20251129_211406.jpg","IMG_20251129_211417.jpg","IMG_20251129_211431.jpg"];
+  const manpowerPhotos=["FB_IMG_1625333916144.jpg","FB_IMG_1625333933120.jpg","FB_IMG_1625333938095.jpg","FB_IMG_1625333999833.jpg","FB_IMG_1625334025914.jpg","FB_IMG_1625334039691.jpg","IMG-20241010-WA0002.jpg","IMG-20241027-WA0014.jpg","IMG-20241107-WA0006.jpg","IMG-20241217-WA0003.jpg","IMG-20241221-WA0000.jpg","IMG20241217093041.jpg"];
   const completedPhotos=["2022-05-25 12_59_31.jpg","IMG-20250526-WA0002.jpg","IMG-20250526-WA0010.jpg","IMG-20250526-WA0012.jpg","IMG-20250526-WA0021.jpg","IMG-20250526-WA0024.jpg","IMG-20250526-WA0033.jpg","IMG-20250526-WA0039.jpg","IMG-20250526-WA0040.jpg","IMG-20250526-WA0042.jpg","IMG-20250526-WA0047.jpg","IMG-20250526-WA0056.jpg","IMG-20250526-WA0058.jpg","IMG-20250526-WA0059.jpg","IMG-20250526-WA0061.jpg","IMG-20250526-WA0066.jpg","IMG-20250526-WA0071.jpg","IMG-20250526-WA0073.jpg","IMG-20250526-WA0080.jpg"];
   try{
     const response=await fetch("https://raw.githubusercontent.com/snbconstructionandengineering-blip/snbconstruction/main/final%20index.html",{cache:"no-cache"});
@@ -21,12 +22,24 @@
     if(logo){logo.src="assets/173578bc-57f4-490d-a7ba-76f0ea6e7857.png";logo.alt="SNB Construction and Engineering logo";}
 
     const servicesGrid=page.querySelector("#services .service-grid");
-    if(servicesGrid){
-      const service=page.createElement("article");service.className="service-card";
+    if(servicesGrid&&!servicesGrid.querySelector('[data-service="manpower"]')){
+      const service=page.createElement("article");service.className="service-card";service.dataset.service="manpower";
       const number=page.createElement("span");number.className="num";number.textContent="07";
       const title=page.createElement("h3");title.textContent="Manpower Supply";
       const description=page.createElement("p");description.textContent="Reliable supply of skilled and general manpower to support construction, industrial, and project site operations.";
       service.append(number,title,description);servicesGrid.append(service);
+    }
+
+    const ongoingSection=page.querySelector("#ongoing-projects");
+    if(ongoingSection){
+      const manpowerSection=page.createElement("section");manpowerSection.className="gallery";manpowerSection.id="manpower-gallery";
+      const wrap=page.createElement("div");wrap.className="wrap";
+      const heading=page.createElement("div");heading.className="section-head";
+      const eyebrow=page.createElement("p");eyebrow.className="eyebrow";eyebrow.style.cssText="margin-bottom:12px;color:var(--steel);letter-spacing:.08em";eyebrow.textContent="Our team";
+      const title=page.createElement("h2");title.textContent="Manpower Supply";heading.append(eyebrow,title);
+      const gallery=page.createElement("div");gallery.className="gallery-grid";
+      manpowerPhotos.forEach((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`Manpower supply team photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;gallery.append(item);});
+      wrap.append(heading,gallery);manpowerSection.append(wrap);ongoingSection.after(manpowerSection);
     }
 
     const projects=page.querySelector("#projects"),heading=projects?.querySelector(".section-head"),grid=projects?.querySelector(".projects-grid");
@@ -39,10 +52,10 @@
       const photos=page.createElement("div");photos.className="gallery-grid";photos.style.marginTop="18px";
       completedPhotos.forEach((filename,index)=>{const image=page.createElement("div");image.className="gallery-item";image.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;image.setAttribute("role","img");image.setAttribute("aria-label",`Rupsha power plant completed project photo ${index+1}`);photos.append(image);});grid.after(photos);
     }
-    const gallery=page.querySelector("#gallery .gallery-grid");
-    if(gallery)gallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
-    const projectsSection=page.querySelector("#projects"),ongoingGallery=page.querySelector("#gallery");
-    if(projectsSection&&ongoingGallery)ongoingGallery.after(projectsSection);
+    const ongoingGallery=page.querySelector("#gallery .gallery-grid");
+    if(ongoingGallery)ongoingGallery.replaceChildren(...ongoingPhotos.map((filename,index)=>{const item=page.createElement("div");item.className="gallery-item";item.setAttribute("role","img");item.setAttribute("aria-label",`SNB precast girder project photo ${index+1}`);item.style.backgroundImage=`url("assets/${encodeURIComponent(filename)}")`;return item;}));
+    const projectsSection=page.querySelector("#projects"),gallerySection=page.querySelector("#gallery");
+    if(projectsSection&&gallerySection)gallerySection.after(projectsSection);
     document.open();document.write("<!doctype html>"+page.documentElement.outerHTML);document.close();
   }catch(error){document.body.innerHTML="<main style='font:16px system-ui;padding:2rem;color:#172b3a'><h1>Website could not load</h1><p>Please refresh the page and check GitHub Pages deployment.</p></main>";}
 })();
